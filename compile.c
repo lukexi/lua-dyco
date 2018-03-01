@@ -9,7 +9,7 @@
 #define LINUX_DYLIB_FLAGS "-fPIC", "-shared",
 
 #define DEBUG_FLAGS "-fno-omit-frame-pointer", "-g",
-// #define PERF_FLAGS "-O3",
+// #define PERF_FLAGS "-O2",
 #define PERF_FLAGS
 #define INCLUDE_FLAGS "-I../rtlua/src", "-I../rtlua/vendor/lua",
 #define COMMON_FLAGS INCLUDE_FLAGS MACOS_DYLIB_FLAGS DEBUG_FLAGS PERF_FLAGS

@@ -11,13 +11,11 @@ function add_to_lua_cpath (path)
 end
 --- END FROM REALTATLK
 
-function unrequire(m)
+-- Add /tmp to where lua looks for libraries
+add_to_lua_cpath("/tmp/?.so")
 
-end
-
-
+print "\n\n\n\nBEGIN****************************************"
 local dynamic_c = require 'dynamic_c'
-
 local c_source = [[
 #include "lua.h"
 #include "lauxlib.h"
@@ -40,7 +38,7 @@ int luaopen_luatest (lua_State *L) {
 }
 ]]
 
-add_to_lua_cpath("/tmp/?.so")
+
 
 library = dynamic_c.create_library("luatest", c_source)
 luatest = require 'luatest'
@@ -71,7 +69,9 @@ int luaopen_luatest (lua_State *L) {
 ]]
 
 dynamic_c.update_source(library, c_source_2)
-package.loaded["luatest"] = nil
-luatest = require 'luatest'
+-- rerequire('luatest')
+-- package.require
+luatest = require('luatest', true)
+print "Required, about to call"
 luatest.foo()
 
